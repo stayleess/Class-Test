@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <p id="prikazi"></p>
+
+    <script>
+
+        class Student {
+            constructor(fullName, address, phone, course) {
+                this._fullName = fullName;
+                this.address = address;
+                this.phone = phone;
+                this.course = course;
+            }
+
+            // f-ja proverava da li ime nepropisnih karaktera
+
+
+            validateName(val) {
+                let regex = /^[A-Za-z0-9 ]+$/;
+                let isValid = regex.test(val);
+                if (!isValid) {
+                    throw new Error("Not valid name")
+                } else {
+                    return this._fullName = val
+                }
+            }
+
+            checkName(text) {
+                text = text.trim();
+                if (text === "") {
+                    throw new Error("The name can not be empty")
+                }
+                this._fullName = text
+            }
+
+            studentName(val) {
+                this.validateName(val);
+                this.checkName(val);
+                return this._fullName;
+            }
+            getInfo() {
+                return `Name: ${this._fullName} <br> Address: ${this.address}<br> Phone: ${this.phone}<br>  Course: ${this.course}`;
+            }
+
+        }
+
+        let student1 = new Student("Niko Nikola", "Srbina 35, 11300 Smededrevo, Srbija", "(064)1120113", "Geografija");
+        console.log(student1.getInfo());
+
+        // provera validnosti imena:
+        // console.log(student1.studentName("12..ll"))
+
+        let student2 = new Student("Marko Nikolic", "Knez Mihajlova 19/20, 11000, Beograd", "(064)45671257", "Masinsko konstruisanje");
+        console.log(student2.getInfo());
+
+        let student3 = new Student("Branko Nikolic", "Karadjordjeva 19/20, 11300 Smededrevo, Srbija", "(061)45671257", "Psihologija");
+        console.log(student3.getInfo());
+
+
+    </script>
+</body>
+
+</html>
